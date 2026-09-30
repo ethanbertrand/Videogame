@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JV index{% endblock %}
+
+{% block body %}
+    <h1>JV index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Date_Sortie</th>
+                <th>Description</th>
+                <th>Detail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for j_v in j_vs %}
+            <tr>
+                <td>{{ j_v.id }}</td>
+                <td>{{ j_v.titre }}</td>
+                <td>{{ j_v.DateSortie ? j_v.DateSortie|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ j_v.description }}</td>
+                <td>{{ j_v.Detail }}</td>
+                <td>
+                    <a href="{{ path('app_j_v_show', {'id': j_v.id}) }}">show</a>
+                    <a href="{{ path('app_j_v_edit', {'id': j_v.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_j_v_new') }}">Create new</a>
+{% endblock %}
