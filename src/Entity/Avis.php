@@ -14,10 +14,16 @@ class Avis
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Avis = null;
+    private ?string $Titre = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Description = null;
+
+    #[ORM\Column]
+    private ?int $Notes = null;
 
     #[ORM\ManyToOne(inversedBy: 'avis')]
-    private ?JV $avis_jeux = null;
+    private ?Jv $Avis_JV = null;
 
     public function getId(): ?int
     {
@@ -31,26 +37,50 @@ class Avis
         return $this;
     }
 
-    public function getAvis(): ?string
+    public function getTitre(): ?string
     {
-        return $this->Avis;
+        return $this->Titre;
     }
 
-    public function setAvis(string $Avis): static
+    public function setTitre(string $Titre): static
     {
-        $this->Avis = $Avis;
+        $this->Titre = $Titre;
 
         return $this;
     }
 
-    public function getAvisJeux(): ?JV
+    public function getDescription(): ?string
     {
-        return $this->avis_jeux;
+        return $this->Description;
     }
 
-    public function setAvisJeux(?JV $avis_jeux): static
+    public function setDescription(string $Description): static
     {
-        $this->avis_jeux = $avis_jeux;
+        $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getNotes(): ?int
+    {
+        return $this->Notes;
+    }
+
+    public function setNotes(int $Notes): static
+    {
+        $this->Notes = $Notes;
+
+        return $this;
+    }
+
+    public function getAvisJV(): ?Jv
+    {
+        return $this->Avis_JV;
+    }
+
+    public function setAvisJV(?Jv $Avis_JV): static
+    {
+        $this->Avis_JV = $Avis_JV;
 
         return $this;
     }

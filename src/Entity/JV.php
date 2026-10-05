@@ -46,9 +46,11 @@ class JV
     /**
      * @var Collection<int, Avis>
      */
-    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'avis_jeux')]
+    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'Avis_JV')]
     private Collection $avis;
 
+
+    
     public function __construct()
     {
         $this->id_plateforme = new ArrayCollection();
@@ -181,7 +183,7 @@ class JV
     {
         if (!$this->avis->contains($avi)) {
             $this->avis->add($avi);
-            $avi->setAvisJeux($this);
+            $avi->setAvisJV($this);
         }
 
         return $this;
@@ -191,11 +193,13 @@ class JV
     {
         if ($this->avis->removeElement($avi)) {
             // set the owning side to null (unless already changed)
-            if ($avi->getAvisJeux() === $this) {
-                $avi->setAvisJeux(null);
+            if ($avi->getAvisJV() === $this) {
+                $avi->setAvisJV(null);
             }
         }
 
         return $this;
     }
+
+    
 }
