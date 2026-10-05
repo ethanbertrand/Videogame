@@ -43,10 +43,17 @@ class JV
     #[ORM\ManyToMany(targetEntity: Utilisateur::class, inversedBy: 'jvs')]
     private Collection $Note;
 
+    /**
+     * @var Collection<int, Avis>
+     */
+    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'avis_jeux')]
+    private Collection $avis;
+
     public function __construct()
     {
         $this->id_plateforme = new ArrayCollection();
         $this->Note = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,6 +165,36 @@ class JV
     public function removeNote(Utilisateur $note): static
     {
         $this->Note->removeElement($note);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): static
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis->add($avi);
+            $avi->setAvisJeux($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): static
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getAvisJeux() === $this) {
+                $avi->setAvisJeux(null);
+            }
+        }
 
         return $this;
     }
