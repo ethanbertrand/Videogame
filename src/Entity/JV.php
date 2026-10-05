@@ -27,6 +27,9 @@ class JV
     #[ORM\Column(length: 255)]
     private ?string $Detail = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Image = null;
+
     #[ORM\ManyToOne(inversedBy: 'jVs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Genre $id_genre = null;
@@ -48,6 +51,8 @@ class JV
      */
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'Avis_JV')]
     private Collection $avis;
+
+    
 
 
     
@@ -111,6 +116,8 @@ class JV
         return $this;
     }
 
+    
+    
     public function getIdGenre(): ?Genre
     {
         return $this->id_genre;
@@ -197,6 +204,18 @@ class JV
                 $avi->setAvisJV(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->Image;
+    }
+
+    public function setImage(string $Image): static
+    {
+        $this->Image = $Image;
 
         return $this;
     }

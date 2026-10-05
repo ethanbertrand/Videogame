@@ -13,7 +13,7 @@
                 <th>Date_Sortie</th>
                 <th>Description</th>
                 <th>Detail</th>
-                <th>actions</th>
+                <th>Image</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +24,8 @@
                 <td>{{ j_v.DateSortie ? j_v.DateSortie|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ j_v.description }}</td>
                 <td>{{ j_v.Detail }}</td>
+                <td>{{ j_v.Image }}</td>
+            </tr>    
                 <td>
                     <a href="{{ path('app_j_v_show', {'id': j_v.id}) }}">show</a>
                     <a href="{{ path('app_j_v_edit', {'id': j_v.id}) }}">edit</a>
