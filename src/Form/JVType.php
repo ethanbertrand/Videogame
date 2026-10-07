@@ -21,11 +21,11 @@ class JVType extends AbstractType
             ->add('Detail')
             ->add('id_genre', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
             ->add('id_plateforme', EntityType::class, [
                 'class' => Plateforme::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
                 'multiple' => true,
             ])
             ->add('Image')
